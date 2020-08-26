@@ -741,12 +741,12 @@ bot.on('message', async msg => {
                         .addFields(
                             { name: '**CRIAR CARGO**', value: 'pop!cargo `nome do cargo`', inline: true },
                             { name: '**KICKAR USUÁRIO**', value: 'pop!kick `@Usuário`', inline: true },
-                            { name: '**BANIR USUÁRIO**', value: 'pop!ban `@Usuário', inline: true },
+                            { name: '**BANIR USUÁRIO**', value: 'pop!ban `@Usuário`', inline: true },
                             { name: '**MUTAR USUÁRIO \n TEMPORARIAMENTE**', value: 'pop!mute `@Usuário`', inline: true },
                             { name: '**EXCLUIR MENSAGENS**', value: 'pop!clear `quantidade de mensagens`', inline: true },
                             { name: "**CANAL DE DESPEDIDA**", value: 'pop!bye', inline: true },
                             { name: "**CANAL DE ENTRADAS**", value: 'pop!welcome', inline: true },
-                            { name: "**AVISAR USUÁRIO**", value: 'pop!warb `@Usuário` `aviso`', inline: true },
+                            { name: "**AVISAR USUÁRIO**", value: 'pop!warn `@Usuário` `aviso`', inline: true },
                         )
                         .setColor("BLUE")
                     m.edit(comandosMod)
