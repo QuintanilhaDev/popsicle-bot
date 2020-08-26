@@ -684,16 +684,19 @@ bot.on('message', async msg => {
             .setTitle("PAINEL DE AJUDA")
             .addField("``COMANDOS DE DIVERSÃO``", "**Clique** em 🎮 para visualizar \n \n")
             .addField("``COMANDOS DE MODERAÇÃO``", "**Clique** em 🛡️ para visualizar \n \n")
-            .addField("``COMANDOS DE ULTILIDADES``", "**Clique** em 🤖 para visualizar")
+            .addField("``COMANDOS DE ULTILIDADES``", "**Clique** em 🤖 para visualizar \n \n")
+            .addField("``COMANDOS MUSICAIS``", "**Clique** em 📀 para visualizar")
             .setColor('AQUA')
         msg.channel.send(embed)
             .then(m => {
                 const fun = (reaction, user) => reaction.emoji.name === "🎮" && user.id === msg.author.id;
                 const mod = (reaction, user) => reaction.emoji.name === "🛡️" && user.id === msg.author.id;
                 const ultil = (reaction, user) => reaction.emoji.name === "🤖" && user.id === msg.author.id;
+                const music = (reaction, user) => reaction.emoji.name === "📀" && user.id === msg.author.id;
                 m.react("🎮")
                 m.react("🛡")
                 m.react("🤖")
+                m.react('📀')
                 const collectorFun = m.createReactionCollector(fun, {
                     time: 5 * 5 * 1000
                 })
@@ -701,6 +704,10 @@ bot.on('message', async msg => {
                     time: 5 * 5 * 1000
                 })
                 const collectorUltil = m.createReactionCollector(ultil, {
+                    time: 5 * 5 * 1000
+                })
+
+                const collectorMusic = m.createReactionCollector(music, {
                     time: 5 * 5 * 1000
                 })
 
@@ -726,6 +733,7 @@ bot.on('message', async msg => {
                     m.react("🎮")
                     m.react("🛡️")
                     m.react("🤖")
+                    m.react('📀')
                 })
                 collectorMod.on('collect', () => {
                     let comandosMod = new discord.MessageEmbed()
@@ -746,6 +754,7 @@ bot.on('message', async msg => {
                     m.react("🎮")
                     m.react("🛡️")
                     m.react("🤖")
+                    m.react('📀')
                 })
                 collectorUltil.on('collect', () => {
                     let comandosUltil = new discord.MessageEmbed()
@@ -761,6 +770,26 @@ bot.on('message', async msg => {
                         m.react("🎮")
                         m.react("🛡️")
                         m.react("🤖")
+                        m.react('📀')
+                })
+
+                collectorMusic.on('collect', () => {
+                    let comandosMusic = new discord.MessageEmbed()
+                        .setTitle('COMANDOS MUSICAIS')
+                        .setColor('#8af3ff')
+                        .addFields(
+                            { name: "Play", value: "pop!play `nome da música`", inline: true },
+                            { name: "Pause", value: "pop!pause para pausar \n a música atual", inline: true },
+                            { name: "Resume", value: "pop!resume para voltar a \n música pausada", inline: true },
+                            { name: "Skip", value: "pop!skip para pular a música", inline: true },
+                            { name: "Queue", value: "pop!queue para \n mostrar a fila", inline: true }
+                        )
+                    m.edit(comandosMusic)
+                    m.reactions.removeAll()
+                        m.react("🎮")
+                        m.react("🛡️")
+                        m.react("🤖")
+                        m.react('📀')
                 })
             })
             .catch(err => console.error(err))
