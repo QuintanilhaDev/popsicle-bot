@@ -577,7 +577,6 @@ bot.on('message', async msg => {
 
     //#region DESPEDIDA
     if (command === "bye") {
-        var despedida = true;
         msg.channel.send('Esse será o canal de despedidas!')
         bot.on("guildMemberRemove", async member => {
             let avatar = member.user.displayAvatarURL({
@@ -591,7 +590,7 @@ bot.on('message', async msg => {
                 .setColor('WHITE')
                 .setDescription(`Tchau, <@${member.id}>! \n Espero que tenha se divertido :(`)
                 .setThumbnail(avatar)
-            msg.channel.send(embed)
+            msg.channel.cache.get(msg.channel.id).send(embed)
         })
         if (!msg.member.hasPermission("ADMINISTRATOR")) {
             msg.reply('você não tem permissão para execuar esse comando!')
